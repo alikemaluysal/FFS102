@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 using WebAPI.Context;
 using WebAPI.DTOs;
 using WebAPI.Entities;
@@ -8,14 +9,21 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UsersController : ControllerBase
+    public class UsersOdevController : ControllerBase
     {
-        private readonly DatabaseContext _context;
+        private static readonly List<User> _users;
+        private static int _index;
 
         //Constructor Injection (Dependency Injection)
-        public UsersController(DatabaseContext context)
+        static UsersOdevController()
         {
-            _context = context;
+            _users = new List<User>(){ 
+                new User(){Id = 1, FirstName = "Ali", LastName = "Uysal", Email = "ali@mail.com"},
+                new User(){Id = 2, FirstName = "Furkan", LastName = "Güneş", Email = "furkan@mail.com"},
+                new User(){Id = 3, FirstName = "Mehmet", LastName = "Okyar", Email = "mehmet@mail.com"},
+            };
+
+            _index = _users.Count + 1;
         }
 
 
@@ -26,8 +34,7 @@ namespace WebAPI.Controllers
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(User))]
         public IActionResult Get()
         {
-            var users = _context.Users.ToList();
-            //List<User>? users = null;
+            var users = _users;
             return Ok(users);
         }
 
@@ -39,7 +46,7 @@ namespace WebAPI.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public IActionResult Get([FromRoute] int id)
         {
-            var user = _context.Users.FirstOrDefault(u => u.Id == id);
+            var user = _users.FirstOrDefault(u => u.Id == id);
 
             if (user is null)
                 return NotFound("Kullanıcı bulunamadı");
@@ -64,13 +71,12 @@ namespace WebAPI.Controllers
                 //Manuel Mapping -> Auto Mapping (Auto Mapper)
                 User user = new User()
                 {
+                    Id = _index++,
                     FirstName = dto.FirstName,
                     LastName = dto.LastName,
                     Email = dto.Email,
                 };
-
-                _context.Users.Add(user);
-                _context.SaveChanges();
+                _users.Add(user);
                 return Ok(user);
 
             }
@@ -81,18 +87,24 @@ namespace WebAPI.Controllers
 
         }
 
-        [HttpPut]
+        [HttpPut("{id}")]
         [Consumes("application/json")]
         [Produces("application/json")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(User))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public IActionResult Update([FromBody] User user)
+        public IActionResult Update([FromBody] User user, int id)
         {
+
+            if(String.IsNullOrEmpty(user.FirstName) || String.IsNullOrEmpty(user.LastName))
+            {
+                return BadRequest("Ad ve soyad alanları boş geçilemez");
+            }
 
             try
             {
-                _context.Users.Update(user);
-                _context.SaveChanges();
+                var userToUpdate = _users.FirstOrDefault(x => x.Id == id);
+                int index = _users.IndexOf(userToUpdate);
+                _users[index] = user;
             }
             catch (Exception e)
             {
@@ -105,15 +117,22 @@ namespace WebAPI.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete([FromRoute] int id)
         {
-            var user = _context.Users.FirstOrDefault(x => x.Id == id);
+            var userToDelete = _users.FirstOrDefault(x => x.Id == id);
+            int index = _users.IndexOf(userToDelete);
 
-            if (user == null)
-                return BadRequest("Bu id'li bir kullanıcı bulunamadı");
+            if (userToDelete == null)
+                return NoContent();
 
-            _context.Users.Remove(user);
-            _context.SaveChanges();
-            return Ok(user);
+            _users.Remove(userToDelete);
+            //_users.RemoveAt(index);
+            return Ok(userToDelete);
         }
+
+
+
+        // 0: Kemal
+        // 1: Mehmet
+        // 3: İbrahim
 
     }
 }

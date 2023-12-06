@@ -9,12 +9,10 @@ namespace WebAPI.Context
 
         public DatabaseContext()
         {
-
         }
 
         public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options) 
         {
-
         }
     }
 }
