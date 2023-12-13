@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Users</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<body>
+
+    <div class="container mt-5">
+        <div class="row my-2">
+            <div class="col">
+                <h1 class="text-center">Kullanıcı Ekle</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <form id="user-post-form" >
+                    <label for="firstName">First Name</label>
+                    <input id="firstName" type="text" name="firstName" class="form-control">
+
+                    <label for="lastName">Last Name</label>
+                    <input id="lastName" type="text" name="lastName" class="form-control">
+
+                    <label for="email">Email</label>
+                    <input id="email" type="text" name="email" class="form-control">
+
+                    <button type="submit" id="btn" onclick="postUser()" class="btn btn-success mt-2" >Kullanıcı Ekle</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <script>
+        
+        document.getElementById("user-post-form").addEventListener('submit', (event) => {
+            event.preventDefault();
+           })
+           
+    //async await
+        async function postUser(){
+            const form = document.getElementById("user-post-form");
+            const formData = new FormData(form);
+            // const jsObj = Object.fromEntries(formData);
+            // const jsonData = JSON.stringify(jsObj);
+
+            let result = await fetch("https://localhost:7104/api/Users", {
+                method: 'POST',
+                headers:{
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(Object.fromEntries(formData))
+            });
+
+            console.log(await result.json())
+
+        }
+
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>

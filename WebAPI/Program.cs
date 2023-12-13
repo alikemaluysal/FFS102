@@ -5,6 +5,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+//Cors
+builder.Services.AddCors();
+
 builder.Services.AddControllers();
 
 builder.Services.AddDbContext<DatabaseContext>(options =>
@@ -24,6 +27,13 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors(builder =>
+{
+    builder.AllowAnyOrigin();
+    builder.AllowAnyHeader();
+    builder.AllowAnyMethod();
+});
 
 app.UseHttpsRedirection();
 

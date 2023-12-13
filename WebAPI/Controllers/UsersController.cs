@@ -56,6 +56,10 @@ namespace WebAPI.Controllers
 
         public IActionResult Create([FromBody] UserCreateDto dto)
         {
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
             if (dto == null)
                 return BadRequest("Hatalı giriş");
 
