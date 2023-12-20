@@ -1,0 +1,43 @@
+﻿@model List<Student>
+
+
+<h1>Öğrenciler</h1>
+
+<a asp-action="Create" class="btn btn-success mt-2">Öğrenci Ekle</a>
+
+<div class="row">
+    <div class="col">
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Ad</th>
+                    <th>Soyad</th>
+                    <th>Alan</th>
+                    <th>Dersler</th>
+                    <th>Eğitmenler</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var student in Model)
+                {
+                    <tr>
+                        <td>@student.Id</td>
+                        <td>@student.FirstName</td>
+                        <td>@student.LastName</td>
+                        <td>@student.Field.Name</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>
+                            <a class="btn btn-warning" >Edit</a>
+                            <a class="btn btn-info" >Details</a>
+                            <a class="btn btn-danger" >Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
