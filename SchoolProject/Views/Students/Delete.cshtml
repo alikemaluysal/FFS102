@@ -1,33 +1,31 @@
-﻿
-@model Student
+﻿@model Student
 
-<h1>Öğrenci Ekle</h1>
+<h1>Öğrenci Sil</h1>
 
 <h4>Öğrenci</h4>
-
+<p>Silmek istediğinize emin misiniz?</p>
 
 <div class="row">
     <div class="col">
-        <form method="post" asp-action="Create">
+        <form method="post" asp-action="Delete">
             <div class="form-group">
                 <label class="control-label" asp-for="FirstName"></label>
-                <input class="form-control" type="text" asp-for="FirstName" />
+                <input class="form-control" type="text" asp-for="FirstName" disabled/>
             </div>
 
             <div class="form-group">
                 <label class="control-label" asp-for="LastName"></label>
-                <input class="form-control" type="text" asp-for="LastName" />
+                <input class="form-control" type="text" asp-for="LastName" disabled />
             </div>
 
             <div class="form-group">
                 <label class="control-label" asp-for="FieldId"></label>
-                <select class="form-control" asp-items="@ViewBag.Fields" asp-for="FieldId">
-                    <option value="0" selected disabled>Alan Seçiniz</option>
-                </select>
+                <input class="form-control" type="text" asp-for="Field.Name" disabled />
+
             </div>
 
             <div class="form-group mt-2">
-                <input type="submit" value="Ekle" class="btn btn-outline-success"/>
+                <input type="submit" value="Sil" class="btn btn-outline-danger" />
             </div>
         </form>
     </div>

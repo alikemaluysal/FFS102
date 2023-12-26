@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
-using SchoolProject.Entities;
+using SchoolProject.Models.Entities;
 
 namespace SchoolProject.Data;
 

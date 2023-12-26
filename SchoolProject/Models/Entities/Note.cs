@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace SchoolProject.Entities;
+namespace SchoolProject.Models.Entities;
 
 public partial class Note
 {

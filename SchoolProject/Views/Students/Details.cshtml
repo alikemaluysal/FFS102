@@ -1,0 +1,63 @@
+﻿@model Student
+
+<h1>Öğrenci Detayları</h1>
+
+<h4>Öğrenci</h4>
+
+<div class="row">
+    <div class="col">
+        <form method="post">
+            <div class="form-group">
+                <label class="control-label" asp-for="FirstName"></label>
+                <input class="form-control" type="text" asp-for="FirstName" disabled/>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label" asp-for="LastName"></label>
+                <input class="form-control" type="text" asp-for="LastName" disabled />
+            </div>
+
+            <div class="form-group">
+                <label class="control-label" asp-for="FieldId"></label>
+                <input class="form-control" type="text" asp-for="Field.Name" disabled />
+
+            </div>
+
+            <div class="form-group mt-2">
+                <a asp-controller="Students" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Düzenle</a>
+                
+            </div>
+        </form>
+    </div>
+
+
+    <div class="row mt-2">
+        <div class="col">
+            <h3>@Model.FirstName @Model.LastName Notlar</h3>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Ders</th>
+                        <th>Not</th>
+                        <th>Veriliş Tarihi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var not in @Model.Notes)
+                    {
+                        <tr>
+                            <td>@not.Course.Name</td>
+                            <td>@not.Grade</td>
+                            <td>@not.IssuedAt.ToShortDateString()</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

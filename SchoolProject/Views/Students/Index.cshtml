@@ -1,4 +1,4 @@
-﻿@model List<Student>
+﻿@model List<StudentViewModel>
 
 
 <h1>Öğrenciler</h1>
@@ -26,13 +26,13 @@
                         <td>@student.Id</td>
                         <td>@student.FirstName</td>
                         <td>@student.LastName</td>
-                        <td>@student.Field.Name</td>
-                        <td>-</td>
-                        <td>-</td>
+                        <td>@student.FieldName</td>
+                        <td>@student.Courses</td>
+                        <td>@student.Instructors</td>
                         <td>
-                            <a class="btn btn-warning" >Edit</a>
-                            <a class="btn btn-info" >Details</a>
-                            <a class="btn btn-danger" >Delete</a>
+                            <a asp-controller="Students" asp-action="Edit" asp-route-id="@student.Id" class="btn btn-warning" >Edit</a>
+                            <a asp-controller="Students" asp-action="Details" asp-route-id="@student.Id" class="btn btn-info">Details</a>
+                            <a asp-controller="Students" asp-action="Delete" asp-route-id="@student.Id"  class="btn btn-danger">Delete</a>
                         </td>
                     </tr>
                 }
