@@ -1,0 +1,30 @@
+﻿@using ExampleMVCProject.Entities
+@model List<Student>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>FirstName</th>
+            <th>LastName</th>
+            <th>Email</th>
+            <th>Phone</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var student in Model)
+        {
+            <tr>
+                <td>@student.Id</td>
+                <td>@student.FirstName</td>
+                <td>@student.LastName</td>
+                <td>@student.Email</td>
+                <td>@student.Phone</td>
+            </tr>
+        }
+    </tbody>
+</table>

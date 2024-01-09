@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Client", "Client\Client.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebMVC", "WebMVC\WebMVC.csproj", "{D1CBAF55-881B-491B-8007-CC2CDBF1E3B8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchoolProject", "SchoolProject\SchoolProject.csproj", "{1A2E7BF6-3F26-4336-92C3-1DA0755089EE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SchoolProject", "SchoolProject\SchoolProject.csproj", "{1A2E7BF6-3F26-4336-92C3-1DA0755089EE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleMVCProject", "ExampleMVCProject\ExampleMVCProject.csproj", "{D80432E8-69BF-4E3B-B5C1-D2091BF38AD3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{1A2E7BF6-3F26-4336-92C3-1DA0755089EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1A2E7BF6-3F26-4336-92C3-1DA0755089EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1A2E7BF6-3F26-4336-92C3-1DA0755089EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D80432E8-69BF-4E3B-B5C1-D2091BF38AD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D80432E8-69BF-4E3B-B5C1-D2091BF38AD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D80432E8-69BF-4E3B-B5C1-D2091BF38AD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D80432E8-69BF-4E3B-B5C1-D2091BF38AD3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
